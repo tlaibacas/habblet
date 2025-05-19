@@ -3,7 +3,7 @@
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
 // @version      0.5
-// @description   Habblet AI Chat Enhancer Debug
+// @description  Habblet AI Chat Enhancer Debug
 // @author       MistaKitty
 // @match        https://www.habblet.city/hotel
 // @grant        none
@@ -24,17 +24,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     }
     function getChatInput() {
         const input = document.querySelector(".chatinput-container input.chat-input");
-        console.log("[Habblet AI] Input selecionado:", input);
+        console.log("[Habblet AI] Selected input:", input);
         return input;
     }
-    function criarOverlayDiv(input) {
-        console.log("[Habblet AI] Criando overlay...");
+    function createOverlayDiv(input) {
+        console.log("[Habblet AI] Creating overlay...");
         let existing = document.getElementById("ai-overlay-habblet");
         if (existing)
             existing.remove();
         let overlay = document.createElement("div");
         overlay.id = "ai-overlay-habblet";
-        overlay.textContent = "Overlay ativo";
+        overlay.textContent = "Overlay active";
         overlay.style.position = "absolute";
         overlay.style.background = "rgba(0, 123, 255, 0.5)";
         overlay.style.color = "white";
@@ -53,26 +53,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         overlay.style.width = `${rect.width}px`;
         overlay.style.height = `${rect.height}px`;
         document.body.appendChild(overlay);
-        console.log("[Habblet AI] Overlay criado e posicionado.");
+        console.log("[Habblet AI] Overlay created and positioned.");
     }
     function main() {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log("[Habblet AI] Script iniciado");
+            console.log("[Habblet AI] Script started");
             let input = getChatInput();
-            let tentativas = 0;
-            while (!input && tentativas < 10) {
-                console.log("[Habblet AI] Input não encontrado. Tentativa:", tentativas + 1);
+            let attempts = 0;
+            while (!input && attempts < 10) {
+                console.log("[Habblet AI] Input not found. Attempt:", attempts + 1);
                 yield delay(1000);
                 input = getChatInput();
-                tentativas++;
+                attempts++;
             }
             if (!input) {
-                console.error("[Habblet AI] Input do chat não foi encontrado após várias tentativas.");
+                console.error("[Habblet AI] Chat input was not found after several attempts.");
                 return;
             }
-            criarOverlayDiv(input);
-            window.addEventListener("resize", () => criarOverlayDiv(input));
-            window.addEventListener("scroll", () => criarOverlayDiv(input));
+            createOverlayDiv(input);
+            window.addEventListener("resize", () => createOverlayDiv(input));
+            window.addEventListener("scroll", () => createOverlayDiv(input));
         });
     }
     main();
