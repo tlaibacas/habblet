@@ -2,10 +2,10 @@
 // ==UserScript==
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
-// @version      0.0.13
+// @version      0.0.14
 // @description  Habblet AI Chat Enhancer
 // @author       MistaKitty
-// @match        https://www.habblet.city/*
+// @match        *://*.habblet.city/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=habblet.city
 // @grant        none
 // @updateURL    https://github.com/tlaibacas/habblet/raw/refs/heads/master/dist/index.user.js
