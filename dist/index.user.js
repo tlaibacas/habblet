@@ -13,13 +13,24 @@
 // ==/UserScript==
 (() => {
     "use strict";
-    window.addEventListener("load", () => {
-        const playLink = document.querySelector('a[href="https://www.habblet.city/hotel"]');
-        if (playLink) {
-            playLink.textContent = "script activated";
+    function updateLinks() {
+        const links = document.querySelectorAll('a[href="https://www.habblet.city/hotel"]');
+        links.forEach((link) => {
+            if (link.textContent && link.textContent.trim() === "JOGAR Habblet") {
+                link.textContent = "script activated";
+            }
+        });
+    }
+    window.addEventListener("load", updateLinks);
+    const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+            if (mutation.addedNodes.length) {
+                updateLinks();
+            }
         }
-        else {
-            console.warn("Not loaded in the right page");
-        }
+    });
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
     });
 })();
