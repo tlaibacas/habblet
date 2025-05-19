@@ -1,6 +1,5 @@
 # Existing ignores
 src/
-
 node_modules/
 .env
 *.log
