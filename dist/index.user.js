@@ -2,8 +2,8 @@
 // ==UserScript==
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
-// @version      0.0.7
-// @description  Habblet AI Chat Enhancer Debug
+// @version      0.0.8
+// @description  Habblet AI Chat Enhancer Debug + message logger
 // @author       MistaKitty
 // @match        https://www.habblet.city/hotel*
 // @grant        none
@@ -73,6 +73,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
                 return;
             }
             createOverlayDiv(input);
+            // Detecta envio da mensagem
+            input.addEventListener("keydown", (e) => {
+                const event = e;
+                if (event.key === "Enter") {
+                    const message = input.value.trim();
+                    if (message.length > 0) {
+                        console.log("[Habblet AI] Mensagem enviada:", message);
+                    }
+                }
+            });
             window.addEventListener("resize", () => createOverlayDiv(input));
             window.addEventListener("scroll", () => createOverlayDiv(input));
         });
