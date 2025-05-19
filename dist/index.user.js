@@ -1,10 +1,10 @@
 "use strict";
 // ==UserScript==
-// @name         Habblet AI Chat Enhancer
+// @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
-// @version      0.3
-// @description  Overlay azul sobre input do chat em Habblet
-// @author       MistaKitty / Tiago
+// @version      0.5
+// @description  Overlay azul sobre input do chat com debug e logs
+// @author       Tiago
 // @match        *://*.habblet.com/*
 // @grant        none
 // ==/UserScript==
@@ -19,17 +19,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 (function () {
     "use strict";
-    // Delay simples
     function delay(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
     }
-    // Seleciona input de chat correto
     function getChatInput() {
-        return document.querySelector(".chatinput-container input.chat-input");
+        const input = document.querySelector(".chatinput-container input.chat-input");
+        console.log("[Habblet AI] Input selecionado:", input);
+        return input;
     }
-    // Cria overlay azul posicionado sobre o input
     function criarOverlayDiv(input) {
-        // Remove overlay anterior, se houver
+        console.log("[Habblet AI] Criando overlay...");
         let existing = document.getElementById("ai-overlay-habblet");
         if (existing)
             existing.remove();
@@ -37,35 +36,41 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         overlay.id = "ai-overlay-habblet";
         overlay.textContent = "Overlay ativo";
         overlay.style.position = "absolute";
-        overlay.style.background = "rgba(0, 123, 255, 0.5)"; // azul translúcido
+        overlay.style.background = "rgba(0, 123, 255, 0.5)";
         overlay.style.color = "white";
         overlay.style.padding = "6px 12px";
         overlay.style.borderRadius = "6px";
         overlay.style.fontSize = "14px";
-        overlay.style.pointerEvents = "none"; // deixa clicar no input abaixo
+        overlay.style.pointerEvents = "none";
         overlay.style.zIndex = "9999";
         overlay.style.display = "flex";
         overlay.style.alignItems = "center";
         overlay.style.justifyContent = "center";
         overlay.style.fontWeight = "bold";
-        // Posição e tamanho da overlay = mesma do input
         const rect = input.getBoundingClientRect();
         overlay.style.left = `${rect.left + window.scrollX}px`;
         overlay.style.top = `${rect.top + window.scrollY}px`;
         overlay.style.width = `${rect.width}px`;
         overlay.style.height = `${rect.height}px`;
         document.body.appendChild(overlay);
+        console.log("[Habblet AI] Overlay criado e posicionado.");
     }
     function main() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield delay(2000);
-            const input = getChatInput();
+            console.log("[Habblet AI] Script iniciado");
+            let input = getChatInput();
+            let tentativas = 0;
+            while (!input && tentativas < 10) {
+                console.log("[Habblet AI] Input não encontrado. Tentativa:", tentativas + 1);
+                yield delay(1000);
+                input = getChatInput();
+                tentativas++;
+            }
             if (!input) {
-                console.warn("Input do chat não encontrado");
+                console.error("[Habblet AI] Input do chat não foi encontrado após várias tentativas.");
                 return;
             }
             criarOverlayDiv(input);
-            // Opcional: atualizar a posição do overlay caso o input se mova
             window.addEventListener("resize", () => criarOverlayDiv(input));
             window.addEventListener("scroll", () => criarOverlayDiv(input));
         });
