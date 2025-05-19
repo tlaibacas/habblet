@@ -2,7 +2,7 @@
 // ==UserScript==
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
-// @version      0.0.10
+// @version      0.0.11
 // @description  Habblet AI Chat Enhancer Debug
 // @author       MistaKitty
 // @match        https://www.habblet.city/*
@@ -17,7 +17,7 @@
         const links = document.querySelectorAll('a[href="https://www.habblet.city/hotel"]');
         links.forEach((link) => {
             if (link.textContent && link.textContent.trim() === "JOGAR Habblet") {
-                link.textContent = "script activated";
+                link.textContent = "script activated!";
             }
         });
     }
