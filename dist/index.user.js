@@ -3,9 +3,9 @@
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
 // @version      0.5
-// @description  Overlay azul sobre input do chat com debug e logs
-// @author       Tiago
-// @match        *://*.habblet.com/*
+// @description   Habblet AI Chat Enhancer Debug
+// @author       MistaKitty
+// @match        https://www.habblet.city/hotel
 // @grant        none
 // ==/UserScript==
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
