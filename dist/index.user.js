@@ -1,4 +1,3 @@
-"use strict";
 // ==UserScript==
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
