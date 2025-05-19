@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
-// @version      0.0.14
+// @version      0.0.16
 // @description  Habblet AI Chat Enhancer
 // @author       MistaKitty
 // @match        *://*.habblet.city/*
