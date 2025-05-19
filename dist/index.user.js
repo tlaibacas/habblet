@@ -2,11 +2,13 @@
 // ==UserScript==
 // @name         Habblet AI Chat Enhancer Debug
 // @namespace    http://tampermonkey.net/
-// @version      0.0.6
+// @version      0.0.7
 // @description  Habblet AI Chat Enhancer Debug
 // @author       MistaKitty
 // @match        https://www.habblet.city/hotel*
 // @grant        none
+// @updateURL    https://github.com/tlaibacas/habblet/raw/refs/heads/master/dist/index.user.js
+// @downloadURL  https://github.com/tlaibacas/habblet/raw/refs/heads/master/dist/index.user.js
 // ==/UserScript==
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
